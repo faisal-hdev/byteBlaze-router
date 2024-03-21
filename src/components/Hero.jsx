@@ -17,7 +17,7 @@ const Hero = () => {
           </p>
           <div className="flex gap-2 justify-center">
             <Link
-              to="/blog"
+              to="/blogs"
               className="relative inline-block px-4 py-2 font-medium group "
             >
               <span className="absolute inset-0 w-full h-full transition rounded duration-200 ease-out transform translate-x-1 translate-y-1 bg-primary group-hover:-translate-x-0 group-hover:-translate-y-0"></span>

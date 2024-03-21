@@ -41,7 +41,7 @@ const Nav = () => {
             Home
           </NavLink>
           <NavLink
-            to="/blog"
+            to="/blogs"
             className={({ isActive }) =>
               isActive
                 ? "text-primary text-lg border-b-2 border-primary"
