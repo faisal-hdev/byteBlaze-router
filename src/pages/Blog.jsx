@@ -1,26 +1,33 @@
 import { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { MdBookmarkAdded } from "react-icons/md";
+import { saveBlog } from "../utils";
+
+// import Loader from "../components/Loader";
 
 const Blog = () => {
   const [tabIndex, setTabIndex] = useState(0);
 
   const blog = useLoaderData();
-  const { title, published_at, comments_count, public_reactions_count, tags } =
-    blog;
+  const { title, published_at, comments_count, public_reactions_count } = blog;
+
+  const handleBookMark = (blog) => {
+    saveBlog(blog);
+  };
 
   return (
     <div className="max-w-3xl px-6 py-16 mx-auto space-y-12">
       <article className="space-y-8 dark:bg-gray-800 dark:text-gray-50">
         <div className="space-y-6">
-          <h1 className="text-4xl font-bold md:tracking-tight md:text-5xl">
+          <h1 className="text-2xl font-bold md:tracking-tight md:text-5xl">
             {title}
           </h1>
           <div className="flex flex-col items-start justify-between w-full md:flex-row md:items-center dark:text-gray-400">
-            <p className="text-sm">
+            <p className="text-lg">
               {comments_count} min read •{" "}
               {new Date(published_at).toLocaleDateString()}
             </p>
-            <p className="flex-shrink-0 mt-3 text-sm md:mt-0">
+            <p className="flex-shrink-0 mt-3 text-lg md:mt-0">
               {comments_count} Comments • {public_reactions_count} views
             </p>
           </div>
@@ -34,7 +41,7 @@ const Blog = () => {
               rel="noopener noreferrer"
               href="#"
               className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
-                tabIndex === 0 ? "border border-b-0" : "border-b"
+                tabIndex === 0 ? "border-2 border-b-0" : "border-b"
               } rounded-t-lg dark:border-gray-400 dark:text-gray-50`}
             >
               <svg
@@ -59,7 +66,7 @@ const Blog = () => {
               rel="noopener noreferrer"
               href="#"
               className={`flex items-center flex-shrink-0 px-5 py-3 space-x-2 ${
-                tabIndex === 1 ? "border border-b-0" : "border-b"
+                tabIndex === 1 ? "border-2 border-b-0" : "border-b"
               } rounded-t-lg dark:border-gray-400 dark:text-gray-50`}
             >
               <svg
@@ -77,44 +84,16 @@ const Blog = () => {
               </svg>
               <span>Author</span>
             </Link>
+            <div
+              onClick={() => handleBookMark(blog)}
+              className="bg-primary p-3 hover:scale-105 overflow-hidden rounded-full ml-5 bg-opacity-20 hover:bg-opacity-30 cursor-pointer duration-100"
+            >
+              <MdBookmarkAdded size={20} className="text-secondary" />
+            </div>
           </div>
         </div>
         <Outlet />
       </article>
-      <div>
-        <div className="flex flex-wrap py-6 gap-2 border-t border-dashed dark:border-gray-400">
-          {tags?.map((tag) => (
-            <a
-              key={tag}
-              rel="noopener noreferrer"
-              href="#"
-              className="px-3 py-1 rounded-sm hover:underline dark:bg-violet-400 dark:text-gray-900"
-            >
-              #{tag}
-            </a>
-          ))}
-        </div>
-        <div className="space-y-2">
-          <h4 className="text-lg font-semibold">Related posts</h4>
-          <ul className="ml-4 space-y-1 list-disc">
-            <li>
-              <a rel="noopener noreferrer" href="#" className="hover:underline">
-                Nunc id magna mollis
-              </a>
-            </li>
-            <li>
-              <a rel="noopener noreferrer" href="#" className="hover:underline">
-                Duis molestie, neque eget pretium lobortis
-              </a>
-            </li>
-            <li>
-              <a rel="noopener noreferrer" href="#" className="hover:underline">
-                Mauris nec urna volutpat, aliquam lectus sit amet
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   );
 };
