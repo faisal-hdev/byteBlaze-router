@@ -4,10 +4,16 @@ import rehypeRaw from "rehype-raw";
 
 const Content = () => {
   const blog = useLoaderData();
-  const { title, published_at, cover_image, description, tags, body_html } =
-    blog;
+  const {
+    title,
+    published_at,
+    cover_image,
+    description,
+    tags,
+    body_html,
+    url,
+  } = blog;
 
-  console.log(blog);
   return (
     <div
       rel="noopener noreferrer"
@@ -35,9 +41,13 @@ const Content = () => {
             </a>
           ))}
         </div>
-        <h3 className="text-2xl my-4 font-semibold group-hover:underline group-focus:underline">
+        <a
+          href={url}
+          target="blank"
+          className="text-2xl my-4 font-semibold group-hover:underline group-focus:underline"
+        >
           {title}
-        </h3>
+        </a>
       </div>
       <div className="space-y-3 flex flex-col">
         <span className="text-lg font-semibold dark:text-gray-400">

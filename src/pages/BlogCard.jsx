@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
-import { deleteBlogs } from "../utils";
+// import { deleteBlogs } from "../utils";
 
-const BlogCard = ({ blog, deletable }) => {
+const BlogCard = ({ blog, deletable, handleDelete }) => {
   const { cover_image, title, description, published_at, id } = blog;
-  const handleDelete = (id) => {
-    deleteBlogs(id);
-  };
+
   return (
     <div className="flex relative">
       <Link
@@ -29,6 +27,7 @@ const BlogCard = ({ blog, deletable }) => {
           <h3 className="text-2xl my-4 font-semibold group-hover:underline group-focus:underline">
             {title}
           </h3>
+          <h4></h4>
         </div>
         <div className="space-y-2">
           <span className="text-lg font-semibold dark:text-gray-400">
