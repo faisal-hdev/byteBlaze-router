@@ -38,7 +38,6 @@ export const router = createBrowserRouter([
           },
         ],
       },
-
       { path: "/bookmarks", element: <Bookmarks /> },
     ],
   },

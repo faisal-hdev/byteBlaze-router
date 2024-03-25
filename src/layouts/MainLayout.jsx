@@ -8,11 +8,9 @@ const MainLayout = () => {
       <div className="h-16">
         <Nav />
       </div>
-      {/* packet */}
       <div className="min-h-[calc(100vh-116px)]">
         <Outlet />
       </div>
-      {/* footer */}
       <Footer />
     </div>
   );
